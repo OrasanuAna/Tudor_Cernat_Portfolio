@@ -25,6 +25,35 @@
   });
 
   /**
+   * Dark mode
+   */
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  themeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+
+    // Actualizează textul butonului în funcție de temă
+    if (body.classList.contains("dark-mode")) {
+      themeToggle.textContent = "☀️ Light Mode";
+    } else {
+      themeToggle.textContent = "🌙 Dark Mode";
+    }
+
+    // Salvează preferința utilizatorului în localStorage
+    localStorage.setItem(
+      "theme",
+      body.classList.contains("dark-mode") ? "dark" : "light"
+    );
+  });
+
+  // Setează tema inițială pe baza preferințelor salvate
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    themeToggle.textContent = "☀️ Light Mode";
+  }
+
+  /**
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll(".navmenu .toggle-dropdown").forEach((navmenu) => {
